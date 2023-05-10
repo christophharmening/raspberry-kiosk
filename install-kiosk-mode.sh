@@ -1,19 +1,17 @@
 #!/bin/bash
 
-
-
 #############
 # Variablen #
 #############
-username=pi			# username for autologin
-url=https://www.google.de	# shown url in format https://www.web.de
-pause_time=60			# time to wait between url refreshs
+username=pi								# username for autologin
+url=https://www.google.de						# shown url in format https://www.web.de
+pause_time=60								# time to wait between url refreshs
+BIN=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd) 	# where i am?
 
-# root ?
-if [ "$EUID" -ne 0 ] ; then
-	echo "Please run as root!"
-	exit 1
-fi
+##########
+# root ? #
+##########
+if [ "$EUID" -ne 0 ] ; then echo "Please run as root!"; exit 1; fi
 
 ########################
 # First upgrade system #
@@ -47,9 +45,30 @@ sed /etc/lightdm/lightdm.conf -i -e "s/^#autologin-user=/#autologin-user=pi/"
 
 # autostart
 if [ -d /home/${user}/.config/openbox ]; then mkdir -p /home/${user}/.config/openbox ; fi
-#printf "#!/bin/bash \n\nxset s noblank \nxset s off \nxset -dpms \nunclutter &\n chromium --noerrdialogs --disable-infobars --kiosk ${url} & \nwhile true; do \n sleep ${pause_time} \n xdotool key F5 \ndone" > /home/${user}/.config/openbox/autostart.sh
-
+cp ${BIN}/template/home/user/.config/openbox/autostart.sh /home/${user}/.config/openbox/autostart.sh
 chmod +x /home/${user}/.config/openbox/autostart.sh
+
+# kontextmenu
+cp ${BIN}/template/home/user/.config/openbox/menu.xml /home/${user}/.config/openbox/menu.xml
+chmod +x /home/${user}/.config/openbox/menu.xml
+
+# change owner
+chown -R ${user}. /home/${user}
+
+###########################
+# little system hardening #
+###########################
+
+# firwall
+
+# antivirus
+apt-get install clamav -y
+
+# automatic updates
+apt-get install unattended-upgrades -y
+cp ${BIN}/template/etc/apt/apt.conf.d/50unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
+chmod 644 /etc/apt/apt.conf.d/50unattended-upgrades
+
 
 
 
