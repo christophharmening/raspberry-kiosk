@@ -38,7 +38,6 @@ if [ -f ${file_konsole_autologin} ] ; then rm -rf ${file_konsole_autologin} ; fi
 sed /etc/lightdm/lightdm.conf -i -e "s/^autologin-user=.*/#autologin-user=/"
 
 # Set new autologin for user
-if [ ! -d /etc/lightdm/lightdm.conf.d ]; then mkdir -p /etc/lightdm/lightdm.conf.d ; fi
 if [ -f /etc/lightdm/lighdm.conf.d/12-autologin.conf ]; then rm -rf /etc/lightdm/lighdm.conf.d/12-autologin.conf ; fi
 sed /etc/lightdm/lightdm.conf -i -e "s/^#autologin-user=/autologin-user=${username}/"
 
@@ -47,7 +46,7 @@ sed /etc/lightdm/lightdm.conf -i -e "s/^#autologin-user=/autologin-user=${userna
 #########################
 
 # autostart
-if [ -d /home/${username}/.config/openbox ]; then mkdir -p /home/${username}/.config/openbox ; fi
+if [ ! -d /home/${username}/.config/openbox ]; then mkdir -p /home/${username}/.config/openbox ; fi
 cp ${BIN}/template/home/user/.config/openbox/autostart.sh /home/${username}/.config/openbox/autostart.sh
 sed -i /home/${username}/.config/openbox/autostart.sh "s/-URL-/${url}/g"
 sed -i /home/${username}/.config/openbox/autostart.sh "s/-TIME-/${pause_time}/g"
