@@ -3,10 +3,13 @@
 #############
 # Variablen #
 #############
-username=pi								# username for autologin
+username=pi								          # username for autologin
 url=https://www.google.de						# shown url in format https://www.web.de
-pause_time=60								# time to wait between url refreshs
+pause_time=60								        # time in seconds to wait between url refreshs
+scan_time=23                        # hour when clamav doing a systemscan
+clam_log=/var/log/clamav/scan.log   # logfile for clamav virus found
 BIN=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd) 	# where i am?
+
 
 ##########
 # root ? #
@@ -59,10 +62,14 @@ chown -R ${user}. /home/${user}
 # little system hardening #
 ###########################
 
-# firwall
+# firewall
+# in arbeit ;) 
 
 # antivirus
 apt-get install clamav -y
+# get new virus definitions
+#systemctl stop clamav-freshclam ; freshclam
+echo "00 ${scan_time} * * * root   clamscan --remove -ir / | grep FOUND >> ${clam_log}" >> /etc/crontab
 
 # automatic updates
 apt-get install unattended-upgrades -y
