@@ -1,0 +1,7 @@
+#!/bin/bash
+# Skript prüft ob der Monitor abschaltet werden kann
+
+disable_time=-DISABLE-
+
+while true; do
+  if 
