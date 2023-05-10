@@ -19,7 +19,7 @@ if [ "$EUID" -ne 0 ] ; then echo "Please run as root!"; exit 1; fi
 ########################
 # First upgrade system #
 ########################
-apt-get update && apt-egt upgrade -y
+apt-get update && apt-get upgrade -y
 
 ####################
 # Needed GUI tools #
