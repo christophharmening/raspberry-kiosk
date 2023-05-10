@@ -49,6 +49,8 @@ sed /etc/lightdm/lightdm.conf -i -e "s/^#autologin-user=/#autologin-user=pi/"
 # autostart
 if [ -d /home/${user}/.config/openbox ]; then mkdir -p /home/${user}/.config/openbox ; fi
 cp ${BIN}/template/home/user/.config/openbox/autostart.sh /home/${user}/.config/openbox/autostart.sh
+sed -i /home/${user}/.config/openbox/autostart.sh "s/-URL-/${url}/g"
+sed -i /home/${user}/.config/openbox/autostart.sh "s/-TIME-/${pause_time}/g"
 chmod +x /home/${user}/.config/openbox/autostart.sh
 
 # kontextmenu
@@ -76,6 +78,6 @@ apt-get install unattended-upgrades -y
 cp ${BIN}/template/etc/apt/apt.conf.d/50unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
 chmod 644 /etc/apt/apt.conf.d/50unattended-upgrades
 
-
+reboot
 
 
