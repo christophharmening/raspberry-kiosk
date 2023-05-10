@@ -8,7 +8,7 @@ url='https:\/\/www.google.de'		# shown url in format https:\/\/www.web.de
 pause_time=60				# time in seconds to wait between url refreshs
 scan_time=23				# hour when clamav doing a systemscan
 screen_disable_time=17			# hour when screen gets off
-reboot_time=07				# hozr when raspi reboots
+reboot_time=07				# hour when raspi reboots
 clam_log=/var/log/clamav/scan.log	# logfile for clamav virus found
 BIN=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd) 	# where i am?
 
@@ -70,7 +70,7 @@ chown -R ${username}. /home/${username}
 ########################
 cp ${BIN}/template/usr/bin/disable_screen /usr/bin/
 sed -i "s/-DISABLE-TIME-/${screen_disable_time}/g" /usr/bin/disable_screen
-sed -i -e "s/^*.reboot/ /" /etc/crontab
+sed -i -e "s/^*.reboot*./ /" /etc/crontab
 echo "OO ${reboot_time} * * * root  /usr/bin/reboot">> /etc/crontab
 
 ###########################
@@ -84,6 +84,7 @@ echo "OO ${reboot_time} * * * root  /usr/bin/reboot">> /etc/crontab
 apt-get install clamav -y
 # get new virus definitions
 #systemctl stop clamav-freshclam ; freshclam
+sed -i -e "s/^*.clamscan*./ /" /etc/crontab
 echo "00 ${scan_time} * * * root   clamscan --remove -ir / | grep FOUND >> ${clam_log}" >> /etc/crontab
 
 # automatic updates
