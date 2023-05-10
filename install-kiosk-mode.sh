@@ -70,7 +70,7 @@ chown -R ${username}. /home/${username}
 ########################
 cp ${BIN}/template/usr/bin/disable_screen /usr/bin/
 sed -i "s/-DISABLE-TIME-/${screen_disable_time}/g" /usr/bin/disable_screen
-sed -i -e "s/^*.reboot*./ /" /etc/crontab
+sed -i -e "/^.*reboot/d" /etc/crontab
 echo "OO ${reboot_time} * * * root  /usr/bin/reboot">> /etc/crontab
 
 ###########################
@@ -84,7 +84,7 @@ echo "OO ${reboot_time} * * * root  /usr/bin/reboot">> /etc/crontab
 apt-get install clamav -y
 # get new virus definitions
 #systemctl stop clamav-freshclam ; freshclam
-sed -i -e "s/^*.clamscan*./ /" /etc/crontab
+sed -i -e "/^.*clamscan.*/d" /etc/crontab
 echo "00 ${scan_time} * * * root   clamscan --remove -ir / | grep FOUND >> ${clam_log}" >> /etc/crontab
 
 # automatic updates
