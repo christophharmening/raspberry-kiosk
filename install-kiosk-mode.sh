@@ -4,7 +4,7 @@
 # Variablen #
 #############
 username=pi				# username for autologin
-url=https://www.google.de		# shown url in format https://www.web.de
+url='https:\/\/www.google.de'		# shown url in format https:\/\/www.web.de
 pause_time=60				# time in seconds to wait between url refreshs
 scan_time=23				# hour when clamav doing a systemscan
 clam_log=/var/log/clamav/scan.log	# logfile for clamav virus found
@@ -55,7 +55,7 @@ chmod +x /home/${username}/.config/openbox/autostart.sh
 # resolution
 cp ${BIN}/template/home/user/.config/openbox/resolutions.sh /home/${username}/.config/openbox/
 chmod +x /home/${username}/.config/openbox/resolutions.sh
-sed -i "s/-USER-/${username}/g" /home/${username}/.config/openbox/menu.xml 
+sed -i "s/.*-USER-.*/${username}/g" /home/${username}/.config/openbox/menu.xml 
 
 # kontextmenu
 cp ${BIN}/template/home/user/.config/openbox/menu.xml /home/${username}/.config/openbox/menu.xml
