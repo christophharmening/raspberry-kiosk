@@ -69,7 +69,7 @@ chown -R ${username}. /home/${username}
 # screen energy saving #
 ########################
 cp ${BIN}/template/usr/bin/disable_screen /usr/bin/
-sed -i "s/-DISABLE-TIME-/${screen_disable_time}/g}" /usr/bin/disable_screen
+sed -i "s/-DISABLE-TIME-/${screen_disable_time}/g" /usr/bin/disable_screen
 sed -i -e "s/^*.reboot/ /" /etc/crontab
 echo "OO ${reboot_time} * * * root  /usr/bin/reboot">> /etc/crontab
 
