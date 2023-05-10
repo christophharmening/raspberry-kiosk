@@ -9,7 +9,7 @@
 
 <!--
   <item label="Terminal">
-    <action name="Execute"><execute>/usr/bin/terminator</execute></action>
+    <action name="Execute"><execute>/usr/bin/x-terminal-emulator</execute></action>
   </item>
 -->
 
