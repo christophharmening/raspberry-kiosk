@@ -92,6 +92,6 @@ apt-get install unattended-upgrades -y
 cp ${BIN}/template/etc/apt/apt.conf.d/50unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
 chmod 644 /etc/apt/apt.conf.d/50unattended-upgrades
 
-#reboot
+reboot
 
 
