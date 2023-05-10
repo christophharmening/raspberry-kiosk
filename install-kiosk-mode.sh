@@ -40,25 +40,25 @@ sed /etc/lightdm/lightdm.conf -i -e "s/^autologin-user=.*/#autologin-user=/"
 # Set new autologin for user
 if [ ! -d /etc/lightdm/lightdm.conf.d ]; then mkdir -p /etc/lightdm/lightdm.conf.d ; fi
 if [ -f /etc/lightdm/lighdm.conf.d/12-autologin.conf ]; then rm -rf /etc/lightdm/lighdm.conf.d/12-autologin.conf ; fi
-sed /etc/lightdm/lightdm.conf -i -e "s/^#autologin-user=/#autologin-user=pi/"
+sed /etc/lightdm/lightdm.conf -i -e "s/^#autologin-user=/#autologin-user=${username}/"
 
 #########################
 # OpenBox configuration #
 #########################
 
 # autostart
-if [ -d /home/${user}/.config/openbox ]; then mkdir -p /home/${user}/.config/openbox ; fi
-cp ${BIN}/template/home/user/.config/openbox/autostart.sh /home/${user}/.config/openbox/autostart.sh
-sed -i /home/${user}/.config/openbox/autostart.sh "s/-URL-/${url}/g"
-sed -i /home/${user}/.config/openbox/autostart.sh "s/-TIME-/${pause_time}/g"
-chmod +x /home/${user}/.config/openbox/autostart.sh
+if [ -d /home/${username}/.config/openbox ]; then mkdir -p /home/${username}/.config/openbox ; fi
+cp ${BIN}/template/home/user/.config/openbox/autostart.sh /home/${username}/.config/openbox/autostart.sh
+sed -i /home/${username}/.config/openbox/autostart.sh "s/-URL-/${url}/g"
+sed -i /home/${username}/.config/openbox/autostart.sh "s/-TIME-/${pause_time}/g"
+chmod +x /home/${username}/.config/openbox/autostart.sh
 
 # kontextmenu
-cp ${BIN}/template/home/user/.config/openbox/menu.xml /home/${user}/.config/openbox/menu.xml
-chmod +x /home/${user}/.config/openbox/menu.xml
+cp ${BIN}/template/home/user/.config/openbox/menu.xml /home/${username}/.config/openbox/menu.xml
+chmod +x /home/${username}/.config/openbox/menu.xml
 
 # change owner
-chown -R ${user}. /home/${user}
+chown -R ${username}. /home/${username}
 
 ###########################
 # little system hardening #
