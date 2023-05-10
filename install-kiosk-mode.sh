@@ -3,11 +3,11 @@
 #############
 # Variablen #
 #############
-username=pi								          # username for autologin
-url=https://www.google.de						# shown url in format https://www.web.de
-pause_time=60								        # time in seconds to wait between url refreshs
-scan_time=23                        # hour when clamav doing a systemscan
-clam_log=/var/log/clamav/scan.log   # logfile for clamav virus found
+username=pi				# username for autologin
+url=https://www.google.de		# shown url in format https://www.web.de
+pause_time=60				# time in seconds to wait between url refreshs
+scan_time=23				# hour when clamav doing a systemscan
+clam_log=/var/log/clamav/scan.log	# logfile for clamav virus found
 BIN=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd) 	# where i am?
 
 
@@ -63,7 +63,7 @@ chown -R ${user}. /home/${user}
 ###########################
 
 # firewall
-# in arbeit ;) 
+# in arbeit ;)
 
 # antivirus
 apt-get install clamav -y
