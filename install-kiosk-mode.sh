@@ -55,7 +55,7 @@ chmod +x /home/${username}/.config/openbox/autostart.sh
 # resolution
 cp ${BIN}/template/home/user/.config/openbox/resolutions.sh /home/${username}/.config/openbox/
 chmod +x /home/${username}/.config/openbox/resolutions.sh
-sed -i /home/${username}/.config/openbox/resolutions.sh "s/-USER-/${username}/g"
+sed -i /home/${username}/.config/openbox/menu.xml "s/-USER-/${username}/g"
 
 # kontextmenu
 cp ${BIN}/template/home/user/.config/openbox/menu.xml /home/${username}/.config/openbox/menu.xml
