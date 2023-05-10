@@ -48,14 +48,13 @@ sed /etc/lightdm/lightdm.conf -i -e "s/^#autologin-user=/autologin-user=${userna
 # autostart
 if [ ! -d /home/${username}/.config/openbox ]; then mkdir -p /home/${username}/.config/openbox ; fi
 cp ${BIN}/template/home/user/.config/openbox/autostart.sh /home/${username}/.config/openbox/autostart.sh
-sed -i "s/-URL-/${url}/g" /home/${username}/.config/openbox/autostart.sh 
-sed -i "s/-TIME-/${pause_time}/g" /home/${username}/.config/openbox/autostart.sh 
+sed -i "s/-URL-/${url}/g" /home/${username}/.config/openbox/autostart.sh
+sed -i "s/-TIME-/${pause_time}/g" /home/${username}/.config/openbox/autostart.sh
 chmod +x /home/${username}/.config/openbox/autostart.sh
 
 # resolution
-cp ${BIN}/template/home/user/.config/openbox/resolutions.sh /home/${username}/.config/openbox/
-chmod +x /home/${username}/.config/openbox/resolutions.sh
-sed -i "s/.*-USER-.*/${username}/g" /home/${username}/.config/openbox/menu.xml 
+cp ${BIN}/template/usr/bin/change_resolution /usr/bin/
+chmod +x /usr/bin/change_resolution
 
 # kontextmenu
 cp ${BIN}/template/home/user/.config/openbox/menu.xml /home/${username}/.config/openbox/menu.xml
