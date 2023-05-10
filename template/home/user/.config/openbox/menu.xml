@@ -14,7 +14,7 @@
 -->
 
   <item label="Auflösung">
-    <action name="Execute"><execute>/home/nutzer/.config/openbox/resolution.sh</execute></acti>
+    <action name="Execute"><execute>/home/-USER-/.config/openbox/resolution.sh</execute></acti>
   </item>
 
   <item label="Reconfigure">
