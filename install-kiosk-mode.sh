@@ -7,6 +7,8 @@ username=pi				# username for autologin
 url='https:\/\/www.google.de'		# shown url in format https:\/\/www.web.de
 pause_time=60				# time in seconds to wait between url refreshs
 scan_time=23				# hour when clamav doing a systemscan
+screen_disable_time=17			# hour when screen gets off
+reboot_time=07				# hozr when raspi reboots
 clam_log=/var/log/clamav/scan.log	# logfile for clamav virus found
 BIN=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd) 	# where i am?
 
@@ -66,8 +68,10 @@ chown -R ${username}. /home/${username}
 ########################
 # screen energy saving #
 ########################
-echo "10 16 * * * root  /usr/bin/xrandr --output HDMI-1 --off" >> /etc/crontab
-echo "15 16 * * * root  /usr/bin/reboot">> /etc/crontab
+cp ${BIN}/template/usr/bin/disable_screen /usr/bin/
+sed -i "s/-DISABLE-TIME-/${screen_disable_time}/g}" /usr/bin/disable_screen
+sed -i -e "s/^*.reboot/ /" /etc/crontab
+echo "OO ${reboot_time} * * * root  /usr/bin/reboot">> /etc/crontab
 
 ###########################
 # little system hardening #

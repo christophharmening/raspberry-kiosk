@@ -1,7 +1,12 @@
 #!/bin/bash
 # Skript prüft ob der Monitor abschaltet werden kann
 
-disable_time=-DISABLE-
+disable_time=-DISABLE-TIME-
 
 while true; do
-  if 
+	real_time=$(date +%H)
+	if [ "${disable_time}" = "${real_time}" ]; then
+		xset dpms force off
+	fi
+	sleep 60
+done
