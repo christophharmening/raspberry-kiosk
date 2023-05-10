@@ -70,8 +70,8 @@ chown -R ${username}. /home/${username}
 ########################
 cp ${BIN}/template/usr/bin/disable_screen /usr/bin/
 sed -i "s/-DISABLE-TIME-/${screen_disable_time}/g" /usr/bin/disable_screen
-sed -i -e "/^.*reboot/d" /etc/crontab
-echo "OO ${reboot_time} * * * root  /usr/bin/reboot">> /etc/crontab
+sed -i -e "/^.*shutdown/d" /etc/crontab
+echo "OO ${reboot_time} * * * root  /sbin/shutdown -r now">> /etc/crontab
 
 ###########################
 # little system hardening #
