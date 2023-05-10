@@ -63,6 +63,12 @@ chmod +x /home/${username}/.config/openbox/menu.xml
 # change owner
 chown -R ${username}. /home/${username}
 
+########################
+# screen energy saving #
+########################
+echo "10 16 * * * root  /usr/bin/xrandr --output HDMI-1 --off" >> /etc/crontab
+echo "15 16 * * * root  /usr/bin/reboot">> /etc/crontab
+
 ###########################
 # little system hardening #
 ###########################
