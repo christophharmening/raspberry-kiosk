@@ -18,6 +18,11 @@ BIN=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd) 	# where 
 ##########
 if [ "$EUID" -ne 0 ] ; then echo "Please run as root!"; exit 1; fi
 
+#########
+# GUI ? #
+#########
+if type Xorg &> /dev/null ; then echo "Your have installed a Gui. Please remove first!; exit 1; fi 
+
 ########################
 # First upgrade system #
 ########################
