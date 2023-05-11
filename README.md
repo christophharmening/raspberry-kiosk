@@ -6,4 +6,4 @@ Kiosk Mode for Raspberry
 
 and run your device
 
--- tested on Raspberry Modell 3b with Raspian/Debian Bullseye 11
+-- tested on Raspberry Modell 3b with Raspian/Debian Bullseye 11 lite wihtout gui
