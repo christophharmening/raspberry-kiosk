@@ -21,7 +21,7 @@ if [ "$EUID" -ne 0 ] ; then echo "Please run as root!"; exit 1; fi
 #########
 # GUI ? #
 #########
-if type Xorg &> /dev/null ; then echo "Your have installed a Gui. Please remove it!"; exit 1; fi 
+if type Xorg &> /dev/null ; then echo "Your have installed a gui. Please remove it!"; exit 1; fi 
 
 ########################
 # First upgrade system #
